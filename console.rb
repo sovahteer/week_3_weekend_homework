@@ -41,7 +41,7 @@ film1.title = "Solo: A Star Wars Story"
 film1.update()
 
 ticket1 = Ticket.new ({'customer_id' => customer1.id, 'film_id' => film1.id})
-ticket2 = Ticket.new ({'customer_id' => customer2.id, 'film_id' => film2.id})
+ticket2 = Ticket.new ({'customer_id' => customer2.id, 'film_id' => film1.id})
 ticket3 = Ticket.new ({'customer_id' => customer3.id, 'film_id' => film4.id})
 ticket4 = Ticket.new ({'customer_id' => customer4.id, 'film_id' => film3.id})
 
@@ -54,8 +54,11 @@ ticket4.save()
 ticket3.film_id = film1.id
 ticket3.update()
 
-# # Testing item deletion (deleting customers wouldn't work with id)
-ticket4.delete()
-film3.delete()
-customer4.delete()
+p customer1.films()
+p film1.customers()
+
+# # # Testing item deletion (deleting customers wouldn't work with id)
+# ticket4.delete()
+# film3.delete()
+# customer4.delete()
 nil

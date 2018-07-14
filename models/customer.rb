@@ -1,5 +1,7 @@
 require 'pry'
 require_relative '../db/sql_runner'
+require_relative 'film'
+require_relative 'ticket'
 
 class Customer
 
@@ -35,6 +37,15 @@ class Customer
     SqlRunner.run(sql, values)
   end
 
+  def films()
+    sql = "SELECT title FROM films
+	         INNER JOIN tickets
+	         ON films.id = tickets.film_id
+	         WHERE customer_id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values).first
+  end
+
   def self.all
     sql = " SELECT * FROM customers"
     values = []
@@ -42,7 +53,7 @@ class Customer
     result = customers.map { |customers| Customer.new ( customer )}
     return result
   end
-  
+
   def self.delete_all()
     sql = "DELETE FROM customers"
     SqlRunner.run(sql)
