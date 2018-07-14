@@ -43,7 +43,16 @@ class Customer
 	         ON films.id = tickets.film_id
 	         WHERE customer_id = $1"
     values = [@id]
-    SqlRunner.run(sql, values).first
+    SqlRunner.run(sql, values).values()
+  end
+
+  def buy_ticket(film)
+    @funds -= film.price
+    update()
+  end
+
+  def how_many_films
+    films.length
   end
 
   def self.all

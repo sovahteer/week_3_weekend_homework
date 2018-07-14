@@ -44,21 +44,39 @@ ticket1 = Ticket.new ({'customer_id' => customer1.id, 'film_id' => film1.id})
 ticket2 = Ticket.new ({'customer_id' => customer2.id, 'film_id' => film1.id})
 ticket3 = Ticket.new ({'customer_id' => customer3.id, 'film_id' => film4.id})
 ticket4 = Ticket.new ({'customer_id' => customer4.id, 'film_id' => film3.id})
+ticket5 = Ticket.new ({'customer_id' => customer1.id, 'film_id' => film4.id})
+ticket6 = Ticket.new ({'customer_id' => customer1.id, 'film_id' => film5.id})
 
 ticket1.save()
 ticket2.save()
 ticket3.save()
 ticket4.save()
+ticket5.save()
+ticket6.save()
 
 # Testing ticket update
 ticket3.film_id = film1.id
 ticket3.update()
 
-p customer1.films()
-p film1.customers()
+# Testing item deletion (deleting customers wouldn't work with id)
+ticket4.delete()
+film3.delete()
+customer4.delete()
 
-# # # Testing item deletion (deleting customers wouldn't work with id)
-# ticket4.delete()
-# film3.delete()
-# customer4.delete()
+# printing results of finding which film customers are seeing
+# and returning the customers that have booked to see a given film
+# p customer1.films()
+# p film1.customers()
+
+# testing buy_ticket function test
+customer1.buy_ticket(film1)
+customer1.buy_ticket(film3)
+customer1.buy_ticket(film5)
+
+# test how many tickets customer has bought
+# (wouldn't work with duplicate tickets)
+# p customer1.how_many_films
+
+#test how many customers are seeing a given film
+p film1.how_many_customers
 nil

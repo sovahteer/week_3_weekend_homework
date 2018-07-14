@@ -44,6 +44,10 @@ class Film
     SqlRunner.run(sql, values).values()
   end
 
+  def how_many_customers()
+    customers.length
+  end
+
   def self.all
     sql = " SELECT * FROM films"
     values = []
