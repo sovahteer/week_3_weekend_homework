@@ -17,8 +17,8 @@ class Film
            VALUES ( $1, $2 )
            RETURNING id"
     values = [@title, @price]
-    customer = SqlRunner.run( sql, values).first
-    @id = customer['id'].to_i
+    film = SqlRunner.run( sql, values).first
+    @id = film['id'].to_i
   end
 
   def update()
